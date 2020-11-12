@@ -32,13 +32,24 @@ func ChangeType()  {
 	fmt.Printf("%T\n",v)
 	fmt.Printf("%v",v)
 }
-
+type SizeOf struct {
+	Size int //64位操作系统8位
+	Size1 int //64位操作系统8位
+	Raw string
+}
 func Offset()  {
-	var foo = 10
+	var foo int32 = 10
+	var s string = `10`
+	var s2 string
 	//var bar = 20
 	//var fooPoint = uintptr(&foo)
 	// (unsafe.Offsetof(&bar) + )
+
+	// sizeof 只返回数据类型的大小，不管实际引用的数据类型的大小
 	fmt.Println(unsafe.Sizeof(&foo))
+	fmt.Println(unsafe.Sizeof(&s))
+	fmt.Println(unsafe.Sizeof(&s2))
+	fmt.Println(unsafe.Sizeof(&SizeOf{}))
 }
 
 func main()  {
