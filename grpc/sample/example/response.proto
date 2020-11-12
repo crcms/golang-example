@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option go_package = ".;example";
+
+message Response { //通常作为公共消息体，约定首字母大写的驼峰法，其实使用response也是一样,grpc(go)还是会生成首字母大写的驼峰
+  message dataList { //内部结构体，如果是小写首字母，则会生成首字母大写的驼峰，如果原首字母就是大写会生成如下：Response_DataList
+    string title = 1;
+    string content = 2;
+    string date = 3;
+    uint32 userId = 4;
+  }
+
+  uint32 code = 1;
+  string message = 2;
+  repeated dataList data = 3;
+}

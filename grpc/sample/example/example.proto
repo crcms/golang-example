@@ -1,0 +1,30 @@
+  syntax = "proto3";
+
+  import "response.proto";
+  // 允许引入本文件的proto引入indirect消息体
+  // import public "indirect.proto";
+
+  option go_package=".;example"; //也可以使用多级目录，最好是绝对路径，当是绝对路径时，会自动创建目录，以当前执行的路径为基准
+
+  enum Status {
+    normal = 0; // enum第一个值必须为0
+    disable = 1;
+  }
+
+  message Request {
+    repeated int32 loves = 1;
+    string name = 2;
+    uint32 age = 3;
+    optional string address = 4;
+    bool selected = 5;
+    map<string, string> other = 6;
+    Status status = 9;
+    oneof avatar {
+      string image_url = 7;
+      bytes image_data = 8;
+    }
+  }
+
+  service ExampleRequestResponse {
+    rpc ExampleCall(Request) returns(Response);
+  }
