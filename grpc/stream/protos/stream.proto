@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option go_package = ".;stream";
+
+message Protocol {
+  bytes bytes = 1;
+}
+
+service StreamCorrespondence {
+  rpc Correspondence(stream Protocol) returns (stream Protocol);
+}
